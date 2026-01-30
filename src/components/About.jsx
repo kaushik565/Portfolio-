@@ -25,7 +25,7 @@ const About = () => {
             <div className="relative glass p-2 rounded-3xl">
               <div className="relative h-[500px] rounded-2xl overflow-hidden">
                 <img
-                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&h=600&fit=crop"
+                  src="/WhatsApp Image 2026-01-30 at 8.35.59 PM.jpeg"
                   alt="Penke Lakshmana Sai Kaushik"
                   className="w-full h-full object-cover"
                 />
