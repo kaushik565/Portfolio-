@@ -1,10 +1,11 @@
 import { motion } from 'framer-motion'
+import { TypeAnimation } from 'react-type-animation'
 import { FaGithub, FaLinkedin } from 'react-icons/fa'
 import { HiLocationMarker, HiMail, HiDownload, HiPhone } from 'react-icons/hi'
 
 const Hero = () => {
   return (
-    <section className="min-h-screen pt-32 pb-16 px-4">
+    <section id="hero" className="min-h-screen pt-32 pb-16 px-4">
       <div className="container-custom">
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 auto-rows-[180px]">
 
@@ -20,7 +21,21 @@ const Hero = () => {
             </div>
             <div>
               <div className="inline-block px-3 py-1 bg-accent/10 border border-accent/20 rounded-full text-accent text-xs font-bold tracking-wider mb-4">
-                QA SUPERVISOR | IT SPECIALIST
+                <TypeAnimation
+                  sequence={[
+                    'QA SUPERVISOR',
+                    2000,
+                    'IT SPECIALIST',
+                    2000,
+                    'QUALITY ENGINEER',
+                    2000,
+                    'FULL STACK DEV',
+                    2000,
+                  ]}
+                  wrapper="span"
+                  speed={50}
+                  repeat={Infinity}
+                />
               </div>
               <h1 className="text-4xl md:text-5xl font-bold text-white mb-4 leading-tight">
                 Quality-Driven <span className="text-zinc-500">Excellence</span><br /> in Medical Diagnostics.

@@ -2,6 +2,7 @@ import { useState } from 'react'
 import Navbar from './components/Navbar'
 import ScrollProgress from './components/ScrollProgress'
 import ScrollToTop from './components/ScrollToTop'
+import { ToastContainer } from './components/Toast'
 import Hero from './components/Hero'
 import Stats from './components/Stats'
 import Projects from './components/Projects'
@@ -17,12 +18,21 @@ function App() {
       <Navbar />
       <Hero />
       <Stats />
-      <Projects />
-      <Skills />
-      <Experience />
-      <Contact />
+      <div id="projects">
+        <Projects />
+      </div>
+      <div id="skills">
+        <Skills />
+      </div>
+      <div id="experience">
+        <Experience />
+      </div>
+      <div id="contact">
+        <Contact />
+      </div>
       <Footer />
       <ScrollToTop />
+      <ToastContainer />
     </div>
   )
 }

@@ -5,6 +5,7 @@ import { HiMenuAlt4, HiX } from 'react-icons/hi'
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false)
   const [isOpen, setIsOpen] = useState(false)
+  const [activeSection, setActiveSection] = useState('hero')
 
   useEffect(() => {
     const handleScroll = () => {
@@ -14,28 +15,56 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
+  // Active section detection
+  useEffect(() => {
+    const sections = ['hero', 'projects', 'skills', 'experience', 'contact']
+
+    const observerOptions = {
+      root: null,
+      rootMargin: '-20% 0px -80% 0px',
+      threshold: 0
+    }
+
+    const observerCallback = (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setActiveSection(entry.target.id)
+        }
+      })
+    }
+
+    const observer = new IntersectionObserver(observerCallback, observerOptions)
+
+    sections.forEach((id) => {
+      const element = document.getElementById(id)
+      if (element) observer.observe(element)
+    })
+
+    return () => observer.disconnect()
+  }, [])
+
   const navLinks = [
-    { name: 'Projects', href: '#projects' },
-    { name: 'Skills', href: '#skills' },
-    { name: 'Experience', href: '#experience' },
-    { name: 'Contact', href: '#contact' },
+    { name: 'Projects', href: '#projects', id: 'projects' },
+    { name: 'Skills', href: '#skills', id: 'skills' },
+    { name: 'Experience', href: '#experience', id: 'experience' },
+    { name: 'Contact', href: '#contact', id: 'contact' },
   ]
 
   return (
     <motion.nav
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }} // Smooth easing
+      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
       className={`fixed top-6 left-0 right-0 z-50 flex justify-center px-4 pointer-events-none`}
     >
       <div
         className={`pointer-events-auto flex items-center justify-between px-6 py-3 rounded-full transition-all duration-300 ${scrolled
-          ? 'bg-surface/80 backdrop-blur-md border border-white/10 shadow-2xl w-[90%] md:w-auto gap-8 md:gap-12'
-          : 'bg-transparent w-full container-custom'
+            ? 'bg-surface/80 backdrop-blur-md border border-white/10 shadow-2xl w-[90%] md:w-auto gap-8 md:gap-12'
+            : 'bg-transparent w-full container-custom'
           }`}
       >
         {/* Logo */}
-        <a href="#" className="text-xl font-bold tracking-tighter text-white z-50">
+        <a href="#hero" className="text-xl font-bold tracking-tighter text-white z-50">
           kaushik<span className="text-accent">.dev</span>
         </a>
 
@@ -45,9 +74,20 @@ const Navbar = () => {
             <a
               key={link.name}
               href={link.href}
-              className="text-sm font-medium text-zinc-400 hover:text-white transition-colors"
+              className={`text-sm font-medium transition-all duration-300 relative ${activeSection === link.id
+                  ? 'text-accent'
+                  : 'text-zinc-400 hover:text-white'
+                }`}
             >
               {link.name}
+              {activeSection === link.id && (
+                <motion.span
+                  layoutId="activeSection"
+                  className="absolute -bottom-1 left-0 right-0 h-0.5 bg-accent"
+                  initial={false}
+                  transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                />
+              )}
             </a>
           ))}
           <a
@@ -82,7 +122,10 @@ const Navbar = () => {
                   <a
                     href={link.href}
                     onClick={() => setIsOpen(false)}
-                    className="block p-4 rounded-xl hover:bg-surfaceLight text-center text-zinc-300 hover:text-white transition-colors"
+                    className={`block p-4 rounded-xl text-center transition-colors ${activeSection === link.id
+                        ? 'bg-accent/10 text-accent border border-accent/30'
+                        : 'hover:bg-surfaceLight text-zinc-300 hover:text-white'
+                      }`}
                   >
                     {link.name}
                   </a>

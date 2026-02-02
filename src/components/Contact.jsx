@@ -2,8 +2,14 @@ import { motion } from 'framer-motion'
 import ContactForm from './ContactForm'
 import { FaGithub, FaLinkedin } from 'react-icons/fa'
 import { HiMail } from 'react-icons/hi'
+import { showToast } from './Toast'
 
 const Contact = () => {
+  const handleEmailCopy = () => {
+    navigator.clipboard.writeText('lakshmanasaikaushik565@gmail.com')
+    showToast('✉️ Email copied to clipboard!', 'success')
+  }
+
   return (
     <section id="contact" className="section-padding pb-32">
       <div className="container-custom">
@@ -17,10 +23,7 @@ const Contact = () => {
             </h2>
             <div className="space-y-6">
               <div
-                onClick={() => {
-                  navigator.clipboard.writeText('lakshmanasaikaushik565@gmail.com')
-                  alert('✅ Email copied to clipboard!')
-                }}
+                onClick={handleEmailCopy}
                 className="bento-card p-6 flex items-center gap-4 group cursor-pointer hover:border-accent/50 transition-colors"
               >
                 <div className="p-4 bg-accent/10 rounded-full text-accent">
