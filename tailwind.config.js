@@ -7,26 +7,22 @@ export default {
     theme: {
         extend: {
             colors: {
-                primary: {
-                    50: '#f5f7ff',
-                    100: '#ebefff',
-                    200: '#d6dfff',
-                    300: '#b3c2ff',
-                    400: '#8c9eff',
-                    500: '#667eea',
-                    600: '#5568d3',
-                    700: '#4553b8',
-                    800: '#374399',
-                    900: '#2d367a',
-                },
-                secondary: {
-                    500: '#764ba2',
-                    600: '#653e8c',
-                    700: '#543277',
-                }
+                // Dark Bento Theme Colors
+                background: '#09090b',      // Main dark background
+                surface: '#18181b',         // Card/surface background
+                surfaceLight: '#27272a',    // Lighter surface
+                border: '#3f3f46',          // Border color
+                accent: '#a3e635',          // Neon lime accent
+                accentHover: '#bef264',     // Lighter lime on hover
+                textPrimary: '#fafafa',     // Primary text
+                textSecondary: '#a1a1aa',   // Secondary text
             },
             fontFamily: {
                 sans: ['Inter', 'system-ui', 'sans-serif'],
+                mono: ['JetBrains Mono', 'monospace'],
+            },
+            animation: {
+                'pulse-glow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
             },
         },
     },
