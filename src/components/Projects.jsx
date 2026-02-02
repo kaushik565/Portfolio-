@@ -3,6 +3,19 @@ import { HiExternalLink, HiCode } from 'react-icons/hi'
 const Projects = () => {
   const projects = [
     {
+      title: 'Batch Mix-Up Detection JIG',
+      emoji: '🧪',
+      description: 'Automatic QR scanning jig to prevent batch and line mix-ups using Python validation and ACTJ auto-routing.',
+      features: [
+        '4-level validation: format, line ID, range, duplicate',
+        'Auto-divert to pass/reject bins with LED + buzzer alerts',
+        'Tkinter live stats + Flask dashboard with CSV/SQLite logs',
+        '100% accuracy across 300+ cartridges tested',
+      ],
+      tech: ['Python', 'Tkinter', 'Flask', 'SQLite', 'Raspberry Pi', 'GM65 Scanner'],
+      gradient: 'from-green-500 to-emerald-500',
+    },
+    {
       title: 'Live Cricket Scoring System',
       emoji: '🏏',
       description: 'A real-time cricket scoring application inspired by IPL-style match dashboards.',

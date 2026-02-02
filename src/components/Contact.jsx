@@ -11,6 +11,13 @@ const Contact = () => {
       color: 'from-red-500 to-pink-500',
     },
     {
+      icon: <HiPhone className="text-3xl" />,
+      title: 'Phone',
+      value: '+91 8886875787',
+      link: 'tel:+918886875787',
+      color: 'from-yellow-500 to-orange-500',
+    },
+    {
       icon: <FaLinkedin className="text-3xl" />,
       title: 'LinkedIn',
       value: 'Lakshmana Sai Kaushik P',
@@ -51,7 +58,7 @@ const Contact = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+        <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-6 mb-16">
           {contactInfo.map((info, index) => (
             <div
               key={index}
@@ -95,7 +102,8 @@ const Contact = () => {
               Send Email
             </a>
             <a
-              href="#"
+              href="/Penke%20Lakshmana%20Sai%20Kaushik.docx"
+              download
               className="inline-flex items-center justify-center gap-3 glass-dark text-white px-10 py-5 rounded-2xl font-bold text-lg hover:scale-105 transform transition-all duration-300 hover:bg-white/20 shadow-xl"
             >
               Download Resume

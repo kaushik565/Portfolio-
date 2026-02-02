@@ -46,7 +46,7 @@ const Hero = () => {
               </span>
             </h1>
             <div className="flex flex-wrap items-center justify-center gap-3 text-lg md:text-xl text-white/90">
-              <span className="px-4 py-2 glass-dark rounded-full">Quality Assurance Engineer</span>
+              <span className="px-4 py-2 glass-dark rounded-full">Quality Assurance Supervisor</span>
               <span className="text-yellow-300">•</span>
               <span className="px-4 py-2 glass-dark rounded-full">Automation Learner</span>
               <span className="text-pink-300">•</span>
@@ -55,8 +55,8 @@ const Hero = () => {
           </div>
 
           <p className="text-lg md:text-xl max-w-3xl mx-auto text-white/90 leading-relaxed animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
-            Crafting <span className="font-bold text-yellow-300">quality-driven solutions</span> with expertise in medical device manufacturing, 
-            expanding into <span className="font-bold text-pink-300">Java automation</span> and <span className="font-bold text-purple-300">full-stack development</span>. 
+            Crafting <span className="font-bold text-yellow-300">quality-driven solutions</span> in a quality assurance department with expertise in medical device manufacturing,
+            expanding into <span className="font-bold text-pink-300">Java automation</span> and <span className="font-bold text-purple-300">full-stack development</span>.
             Building reliable, real-time applications with excellence.
           </p>
 
@@ -70,7 +70,8 @@ const Hero = () => {
               <div className="absolute inset-0 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
             </a>
             <a
-              href="#contact"
+              href="/Penke%20Lakshmana%20Sai%20Kaushik.docx"
+              download
               className="group inline-flex items-center gap-3 glass text-white px-10 py-5 rounded-2xl font-bold text-lg hover:scale-105 transform transition-all duration-300 hover:bg-white/20 shadow-xl"
             >
               <HiDownload className="text-xl group-hover:animate-bounce" />
