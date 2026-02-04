@@ -70,58 +70,118 @@ const Projects = () => {
               variants={fadeIn('up', 'tween', index * 0.1, 0.5)}
             >
               <Tilt
-                tiltMaxAngleX={5}
-                tiltMaxAngleY={5}
+                tiltMaxAngleX={8}
+                tiltMaxAngleY={8}
                 perspective={1000}
-                transitionSpeed={1000}
-                scale={1.02}
+                transitionSpeed={1500}
+                scale={1.03}
                 gyroscope={true}
                 glareEnable={true}
-                glareMaxOpacity={0.15}
+                glareMaxOpacity={0.2}
                 glareColor="#a3e635"
                 glarePosition="all"
                 className="h-full"
               >
-                <div className="bento-card group flex flex-col h-full">
+                <motion.div
+                  className="bento-card group flex flex-col h-full overflow-hidden"
+                  whileHover={{ y: -5 }}
+                  transition={{ duration: 0.3 }}
+                >
                   {/* Image Section (Gradient) */}
                   <div className={`relative h-48 overflow-hidden bg-gradient-to-br ${project.color}`}>
-                    <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors"></div>
-                    <div className="absolute bottom-4 left-4 text-white font-black text-4xl opacity-20 transform translate-y-2 group-hover:translate-y-0 transition-transform">
+                    <motion.div
+                      className="absolute inset-0 bg-black/20"
+                      initial={{ opacity: 0.2 }}
+                      whileHover={{ opacity: 0 }}
+                      transition={{ duration: 0.3 }}
+                    />
+                    <motion.div
+                      className="absolute bottom-4 left-4 text-white font-black text-4xl opacity-20"
+                      initial={{ y: 2 }}
+                      whileHover={{ y: 0, opacity: 0.3 }}
+                      transition={{ duration: 0.3 }}
+                    >
                       0{index + 1}
-                    </div>
+                    </motion.div>
                     {/* Shine effect on hover */}
                     <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-1000"></div>
+                      <motion.div
+                        className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12"
+                        initial={{ x: '-200%' }}
+                        whileHover={{ x: '200%' }}
+                        transition={{ duration: 1 }}
+                      />
                     </div>
+
+                    {/* Floating particles on hover */}
+                    <motion.div
+                      className="absolute top-4 right-4 w-2 h-2 bg-white/50 rounded-full"
+                      animate={{
+                        y: [0, -10, 0],
+                        opacity: [0.5, 1, 0.5]
+                      }}
+                      transition={{
+                        duration: 3,
+                        repeat: Infinity,
+                        ease: "easeInOut"
+                      }}
+                    />
                   </div>
 
                   {/* Content Section */}
                   <div className="p-6 flex-1 flex flex-col">
-                    <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-accent transition-colors">{project.title}</h3>
+                    <motion.h3
+                      className="text-2xl font-bold text-white mb-2 group-hover:text-accent transition-colors"
+                      whileHover={{ x: 5 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      {project.title}
+                    </motion.h3>
                     <p className="text-zinc-400 text-sm mb-6 line-clamp-3 leading-relaxed">
                       {project.description}
                     </p>
 
                     <div className="mt-auto">
                       <div className="flex flex-wrap gap-2 mb-6">
-                        {project.tags.map((tag) => (
-                          <span key={tag} className="text-xs font-mono text-zinc-500 border border-zinc-800 px-2 py-1 rounded group-hover:border-accent/50 group-hover:text-accent transition-colors">
+                        {project.tags.map((tag, tagIndex) => (
+                          <motion.span
+                            key={tag}
+                            className="text-xs font-mono text-zinc-500 border border-zinc-800 px-2 py-1 rounded group-hover:border-accent/50 group-hover:text-accent transition-colors"
+                            initial={{ opacity: 0, y: 10 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ delay: tagIndex * 0.05 }}
+                            whileHover={{ scale: 1.05 }}
+                          >
                             #{tag}
-                          </span>
+                          </motion.span>
                         ))}
                       </div>
 
                       <div className="flex items-center gap-4">
-                        <a href={project.github} target="_blank" rel="noopener noreferrer" className="flex-1 bg-surfaceLight hover:bg-white hover:text-black text-white py-2 rounded-lg font-medium text-sm transition-all text-center flex items-center justify-center gap-2">
+                        <motion.a
+                          href={project.github}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex-1 bg-surfaceLight hover:bg-white hover:text-black text-white py-2 rounded-lg font-medium text-sm transition-all text-center flex items-center justify-center gap-2"
+                          whileHover={{ scale: 1.05 }}
+                          whileTap={{ scale: 0.95 }}
+                        >
                           <FaGithub /> Code
-                        </a>
-                        <a href={project.demo} target="_blank" rel="noopener noreferrer" className="flex-1 border border-zinc-700 hover:border-accent hover:text-accent text-white py-2 rounded-lg font-medium text-sm transition-all text-center flex items-center justify-center gap-2">
+                        </motion.a>
+                        <motion.a
+                          href={project.demo}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex-1 border border-zinc-700 hover:border-accent hover:text-accent text-white py-2 rounded-lg font-medium text-sm transition-all text-center flex items-center justify-center gap-2"
+                          whileHover={{ scale: 1.05 }}
+                          whileTap={{ scale: 0.95 }}
+                        >
                           <FaExternalLinkAlt /> View More
-                        </a>
+                        </motion.a>
                       </div>
                     </div>
                   </div>
-                </div>
+                </motion.div>
               </Tilt>
             </motion.div>
           ))}

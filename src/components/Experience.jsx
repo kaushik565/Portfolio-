@@ -105,8 +105,15 @@ const Experience = () => {
                         viewport={{ once: true, amount: 0.1 }}
                         className="relative"
                     >
-                        {/* Timeline Line */}
-                        <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-accent via-zinc-700 to-transparent"></div>
+                        {/* Timeline Line - Animated */}
+                        <motion.div
+                            className="absolute left-0 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-accent via-zinc-700 to-transparent"
+                            initial={{ scaleY: 0 }}
+                            whileInView={{ scaleY: 1 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 1.5, ease: "easeInOut" }}
+                            style={{ transformOrigin: "top" }}
+                        />
 
                         {workExperience.map((exp, index) => (
                             <motion.div
@@ -121,11 +128,25 @@ const Experience = () => {
 
                                 {/* Content Card */}
                                 <div className={`w-full md:w-5/12 ml-8 md:ml-0 ${index % 2 === 0 ? 'md:pr-12' : 'md:pl-12'}`}>
-                                    <div className="bento-card p-6 group hover:border-accent/50 transition-colors">
+                                    <motion.div
+                                        className="bento-card p-6 group hover:border-accent/50 transition-colors"
+                                        whileHover={{
+                                            scale: 1.02,
+                                            y: -5,
+                                            boxShadow: "0 20px 40px rgba(163, 230, 53, 0.15)"
+                                        }}
+                                        transition={{ type: "spring", stiffness: 300 }}
+                                    >
                                         <div className="flex items-center justify-between mb-3">
                                             <span className="text-accent text-sm font-mono font-bold">{exp.year}</span>
                                             {exp.type === 'current' && (
-                                                <span className="bg-accent/10 text-accent px-3 py-1 rounded-full text-xs font-bold">Current</span>
+                                                <motion.span
+                                                    className="bg-accent/10 text-accent px-3 py-1 rounded-full text-xs font-bold"
+                                                    animate={{ opacity: [1, 0.7, 1] }}
+                                                    transition={{ duration: 2, repeat: Infinity }}
+                                                >
+                                                    Current
+                                                </motion.span>
                                             )}
                                         </div>
                                         <h3 className="text-2xl font-bold text-white mb-1">{exp.role}</h3>
@@ -141,7 +162,7 @@ const Experience = () => {
                                                 </div>
                                             ))}
                                         </div>
-                                    </div>
+                                    </motion.div>
                                 </div>
                             </motion.div>
                         ))}
@@ -159,10 +180,23 @@ const Experience = () => {
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
+                        transition={{ staggerChildren: 0.2 }}
                         className="grid md:grid-cols-2 gap-6"
                     >
                         {education.map((edu, index) => (
-                            <div key={index} className="bento-card p-6 group hover:border-accent/50 transition-colors">
+                            <motion.div
+                                key={index}
+                                className="bento-card p-6 group hover:border-accent/50 transition-colors"
+                                initial={{ opacity: 0, scale: 0.9 }}
+                                whileInView={{ opacity: 1, scale: 1 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: index * 0.2, type: "spring" }}
+                                whileHover={{
+                                    scale: 1.02,
+                                    y: -5,
+                                    boxShadow: "0 20px 40px rgba(163, 230, 53, 0.15)"
+                                }}
+                            >
                                 <div className="mb-4">
                                     <span className="text-accent font-mono font-bold text-sm">{edu.year}</span>
                                     <h3 className="text-xl font-bold text-white mt-2 mb-1">{edu.degree}</h3>
@@ -179,12 +213,12 @@ const Experience = () => {
                                         </div>
                                     ))}
                                 </div>
-                            </div>
+                            </motion.div>
                         ))}
                     </motion.div>
                 </div>
             </div>
-        </section>
+        </section >
     )
 }
 

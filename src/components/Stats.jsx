@@ -53,12 +53,30 @@ const Stats = () => {
                         <motion.div
                             key={index}
                             variants={fadeIn('up', 'spring', index * 0.1, 0.75)}
-                            className="bento-card p-6 text-center group hover:border-accent/50 transition-colors"
+                            whileHover={{
+                                scale: 1.05,
+                                y: -10,
+                                boxShadow: "0 20px 40px rgba(163, 230, 53, 0.2)"
+                            }}
+                            className="bento-card p-6 text-center group hover:border-accent/50 transition-colors cursor-default"
                         >
-                            <AnimatedNumber value={stat.value} suffix={stat.suffix} />
-                            <p className="text-zinc-500 mt-2 font-medium text-sm uppercase tracking-wider">
+                            <motion.div
+                                initial={{ scale: 0 }}
+                                whileInView={{ scale: 1 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: index * 0.1 + 0.3, type: "spring", stiffness: 200 }}
+                            >
+                                <AnimatedNumber value={stat.value} suffix={stat.suffix} />
+                            </motion.div>
+                            <motion.p
+                                className="text-zinc-500 mt-2 font-medium text-sm uppercase tracking-wider"
+                                initial={{ opacity: 0 }}
+                                whileInView={{ opacity: 1 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: index * 0.1 + 0.5 }}
+                            >
                                 {stat.label}
-                            </p>
+                            </motion.p>
                         </motion.div>
                     ))}
                 </motion.div>

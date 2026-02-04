@@ -3,6 +3,7 @@ import Navbar from './components/Navbar'
 import ScrollProgress from './components/ScrollProgress'
 import ScrollToTop from './components/ScrollToTop'
 import ParticleBackground from './components/ParticleBackground'
+import CursorFollower from './components/CursorFollower'
 import { ToastContainer } from './components/Toast'
 import Hero from './components/Hero'
 import Stats from './components/Stats'
@@ -15,6 +16,7 @@ import Footer from './components/Footer'
 function App() {
   return (
     <div className="min-h-screen bg-background text-textPrimary selection:bg-accent selection:text-black relative">
+      <CursorFollower />
       <ParticleBackground />
       <div className="relative z-10">
         <ScrollProgress />
